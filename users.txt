@@ -1,0 +1,2 @@
+admin	root
+empleado1	emp1	Javier Rodriguez	A45A3A	ORQ	jj	19
