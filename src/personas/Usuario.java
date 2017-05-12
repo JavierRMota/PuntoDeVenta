@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Javier
  */
 public interface Usuario {
-    ArrayList<Persona> verUsuarios();
+    ArrayList<Usuario> verUsuarios();
     double corteCaja();
     String getPassword();
     String getUsername();

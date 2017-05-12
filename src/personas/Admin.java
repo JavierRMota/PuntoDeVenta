@@ -20,7 +20,7 @@ public class Admin implements Usuario{
     }
 
     @Override
-    public ArrayList<Persona> verUsuarios() 
+    public ArrayList<Usuario> verUsuarios() 
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

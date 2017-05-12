@@ -7,11 +7,12 @@ package finanzas;
 
 import java.util.ArrayList;
 
-/**
+/*
  *
  * @author Javier
  */
-public class Productos {
+public class Productos 
+{
     public static ArrayList<Productos> productos = new ArrayList<>();
     private String nombre, clave;
     private double precio;
@@ -25,6 +26,5 @@ public class Productos {
     public static void agregarLista(Productos c)
     {
         Productos.productos.add(c);
-    }
-    
+    }    
 }

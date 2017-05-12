@@ -101,27 +101,29 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(totalText))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(payCard)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(payCash))
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cambioText)
-                            .addComponent(totalText))
-                        .addGap(24, 24, 24))
+                                .addComponent(payCash)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cambioText)))
+                        .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(productosCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(38, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(productosCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,15 +137,15 @@ public class Venta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalText)
-                    .addComponent(jCheckBox1))
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cambioText)
                     .addComponent(payCard)
-                    .addComponent(payCash))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(payCash)
+                    .addComponent(cambioText))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,18 +160,29 @@ public class Venta extends javax.swing.JFrame {
         String elemento = this.productosCombo.getSelectedItem().toString();
         model.addElement(elemento);
         this.listaProduct.setModel(model);
+        double precio = parseDouble(elemento.substring(elemento.indexOf("$")+1));
+        precio+=parseDouble(this.totalText.getText().substring(7));
+        this.totalText.setText("Total: "+precio);
+        System.out.println(precio);
         
     }//GEN-LAST:event_addProductActionPerformed
 
     private void payCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payCashActionPerformed
         
         double pago = parseDouble(JOptionPane.showInputDialog("Efectivo:"));
-        this.cambioText.setText("Cambio: "+(pago-parseDouble(this.totalText.getText())));
+        this.cambioText.setText("Cambio: "+(pago-parseDouble(this.totalText.getText().substring(7))));
+        JOptionPane.showMessageDialog(null, this.cambioText.getText());
+        this.cambioText.setText("Cambio: 0.00");
+        this.totalText.setText("Cambio: 0.00");
+        this.model.removeAllElements();
     }//GEN-LAST:event_payCashActionPerformed
 
     private void payCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payCardActionPerformed
        JOptionPane.showMessageDialog(null, "Esperando PinPad...");
        JOptionPane.showMessageDialog(null, "Pago realizado exitosamente.");
+       this.cambioText.setText("Cambio: 0.00");
+       this.totalText.setText("Cambio: 0.00");
+       this.model.removeAllElements();
     }//GEN-LAST:event_payCardActionPerformed
 
     private void productosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosComboActionPerformed
