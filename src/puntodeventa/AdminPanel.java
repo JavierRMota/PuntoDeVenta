@@ -29,6 +29,8 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         addUser = new javax.swing.JButton();
+        addProduct = new javax.swing.JButton();
+        printInventario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,15 +43,26 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
+        addProduct.setText("Agregar producto");
+        addProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductActionPerformed(evt);
+            }
+        });
+
+        printInventario.setText("Imprimir inventario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(addUser))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(printInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(544, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -59,7 +72,11 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(addUser)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(addProduct)
+                .addGap(18, 18, 18)
+                .addComponent(printInventario)
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         pack();
@@ -70,6 +87,12 @@ public class AdminPanel extends javax.swing.JFrame {
         adduser.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addUserActionPerformed
+
+    private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
+        AgregarProducto addp = new AgregarProducto();
+        addp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,7 +130,9 @@ public class AdminPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addProduct;
     private javax.swing.JButton addUser;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton printInventario;
     // End of variables declaration//GEN-END:variables
 }
