@@ -32,10 +32,9 @@ public class Comida extends Consumible{
             this.codigoTipo = "BN";
         }else if (this.tipo.equalsIgnoreCase("Mascotas")){
             this.codigoTipo = "MAS";
-
+        }else this.codigoTipo="COM";
         generarCodigo();
-        }
-        EscribirArchivo.addProducto(this);
+        
     }
     
     

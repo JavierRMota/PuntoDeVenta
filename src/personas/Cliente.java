@@ -9,6 +9,16 @@ package personas;
  *
  * @author Javier
  */
-public class Cliente {
+public class Cliente extends Persona{
+
+    public Cliente(String nombre, String direccion, String correo, int edad, String rfc) {
+        super(nombre, direccion, correo, edad, rfc);
+    }
+
+    @Override
+    public String toString() {
+        return this.razonSocial+"\t"+this.rfc+"\t"+this.direccion+"\t"+this.correo;
+    }
+
     
 }

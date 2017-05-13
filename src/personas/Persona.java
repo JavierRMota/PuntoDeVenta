@@ -22,5 +22,7 @@ public abstract class Persona {
             this.edad=edad;
         else this.edad=18;
     }
+    @Override
+    public abstract String toString();
     
 }

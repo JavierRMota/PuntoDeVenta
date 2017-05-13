@@ -35,9 +35,9 @@ public class Cargador extends Electronico{
             this.codigoEntrada = "LN";
         }else if (this.entrada.equalsIgnoreCase("microUSB")){
             this.codigoEntrada = "MUSB";
-        }
+        }else this.codigoEntrada ="CARG";
         generarCodigo();
-        EscribirArchivo.addProducto(this);
+        
         
         
     }

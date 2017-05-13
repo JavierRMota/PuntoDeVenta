@@ -110,7 +110,8 @@ public class Login extends javax.swing.JFrame {
         {
             if(u instanceof Empleado)
             {
-                Venta vent = new Venta();
+                Empleado e = (Empleado) u; 
+                Venta vent = new Venta(e);
                 vent.setVisible(true);
                 this.dispose();
             }

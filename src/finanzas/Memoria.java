@@ -12,7 +12,7 @@ import archivos.EscribirArchivo;
  * @author Lenin
  */
 public class Memoria extends Electronico{
-    private final int capacidadGB;
+    
     private final String tipo;
     public final String[] tiposMemoria = {"USB", "SD","MicroSD"};
     private static final String SUFIJO = "MEM";
@@ -20,8 +20,7 @@ public class Memoria extends Electronico{
     private static final double PRECIO_MAX = 500.0;
     private String codigoEntrada;
 
-    public Memoria(int capacidad, String tipo, double precio) {
-        this.capacidadGB = capacidad;
+    public Memoria( String tipo, double precio) {
         this.tipo = tipo;
         
         
@@ -31,9 +30,9 @@ public class Memoria extends Electronico{
             this.codigoEntrada = "SD";
         }else if (this.tipo.equalsIgnoreCase("MicroSD")){
             this.codigoEntrada = "MSD";
-        }
+        }else this.codigoEntrada="MEM";
         generarCodigo();
-        EscribirArchivo.addProducto(this);
+     
     }
     
     private void generarCodigo(){
@@ -46,9 +45,7 @@ public class Memoria extends Electronico{
         }
     }
     
-    public int getCapacidadGB() {
-        return capacidadGB;
-    }
+
 
     public String getTipo() {
         return tipo;

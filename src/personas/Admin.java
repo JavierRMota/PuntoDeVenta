@@ -6,6 +6,8 @@
 package personas;
 
 import archivos.AbrirArchivo;
+import archivos.EscribirArchivo;
+import finanzas.Ventas;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +40,15 @@ public class Admin implements Usuario{
     @Override
     public double corteCaja()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Ventas> ventas = Ventas.getVentas();
+        double corte=0;
+        for(Ventas v: ventas)
+        {
+            corte+=v.getTotal();
+        }
+        EscribirArchivo.escribirCorte();
+        return corte;
+        
     }
 
     @Override

@@ -5,6 +5,9 @@
  */
 package puntodeventa;
 
+import javax.swing.JOptionPane;
+import personas.Admin;
+
 /**
  *
  * @author Javier
@@ -51,6 +54,11 @@ public class AdminPanel extends javax.swing.JFrame {
         });
 
         printInventario.setText("Imprimir inventario");
+        printInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printInventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +101,12 @@ public class AdminPanel extends javax.swing.JFrame {
         addp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addProductActionPerformed
+
+    private void printInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printInventarioActionPerformed
+        Admin a = new Admin("admin", "root");
+        JOptionPane.showMessageDialog(null, "Las ganancias del día: "+a.corteCaja()+". Un reporte detallado se puede encontrar en el archivo CorteDeCaja.txt");
+        
+    }//GEN-LAST:event_printInventarioActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,9 +6,11 @@
 package puntodeventa;
 
 import archivos.AbrirArchivo;
+import finanzas.Ventas;
 import static java.lang.Double.parseDouble;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import personas.*;
 
 /**
  *
@@ -19,8 +21,13 @@ public class Venta extends javax.swing.JFrame {
     /**
      * Creates new form Venta
      */
+    public Empleado e;
     public Venta() {
         initComponents();
+    }
+    public Venta(Empleado e) {
+        initComponents();
+        this.e = e;
     }
 
     /**
@@ -39,9 +46,11 @@ public class Venta extends javax.swing.JFrame {
         payCash = new javax.swing.JButton();
         totalText = new javax.swing.JLabel();
         cambioText = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        factura = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaProduct = new javax.swing.JList<>();
+        delElement = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +93,7 @@ public class Venta extends javax.swing.JFrame {
 
         cambioText.setText("Cambio: 0.0");
 
-        jCheckBox1.setText("Factura");
+        factura.setText("Factura");
 
         listaProduct.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = {  };
@@ -92,6 +101,20 @@ public class Venta extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(listaProduct);
+
+        delElement.setText("Eliminar elemento");
+        delElement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delElementActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Corte de caja");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +137,10 @@ public class Venta extends javax.swing.JFrame {
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(factura, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(delElement))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +149,10 @@ public class Venta extends javax.swing.JFrame {
                                         .addComponent(productosCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +166,9 @@ public class Venta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jCheckBox1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(factura)
+                    .addComponent(delElement))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,7 +176,9 @@ public class Venta extends javax.swing.JFrame {
                     .addComponent(payCard)
                     .addComponent(payCash)
                     .addComponent(cambioText))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
@@ -163,13 +196,24 @@ public class Venta extends javax.swing.JFrame {
         double precio = parseDouble(elemento.substring(elemento.indexOf("$")+1));
         precio+=parseDouble(this.totalText.getText().substring(7));
         this.totalText.setText("Total: "+precio);
-        System.out.println(precio);
+        
         
     }//GEN-LAST:event_addProductActionPerformed
 
     private void payCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payCashActionPerformed
         
         double pago = parseDouble(JOptionPane.showInputDialog("Efectivo:"));
+        if(this.factura.isSelected())
+        {
+           JOptionPane.showMessageDialog(null, "Se enviará factura");
+        }
+        double precio = parseDouble(this.totalText.getText().substring(7));
+        String[] venta = new String[model.size()];
+            for (int x=0; x<model.size();x++)
+            {
+                venta[x]=model.get(x).toString();
+            }
+        Ventas m = new Ventas(venta,precio,e);
         this.cambioText.setText("Cambio: "+(pago-parseDouble(this.totalText.getText().substring(7))));
         JOptionPane.showMessageDialog(null, this.cambioText.getText());
         this.cambioText.setText("Cambio: 0.00");
@@ -178,8 +222,19 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_payCashActionPerformed
 
     private void payCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payCardActionPerformed
+       if(this.factura.isSelected())
+       {
+           JOptionPane.showMessageDialog(null, "Se enviará factura");
+       }
        JOptionPane.showMessageDialog(null, "Esperando PinPad...");
        JOptionPane.showMessageDialog(null, "Pago realizado exitosamente.");
+       double precio = parseDouble(this.totalText.getText().substring(7));
+       String[] venta = new String[model.size()];
+            for (int x=0; x<model.size();x++)
+            {
+                venta[x]=model.get(x).toString();
+            }
+       Ventas m = new Ventas(venta,precio,e);
        this.cambioText.setText("Cambio: 0.00");
        this.totalText.setText("Cambio: 0.00");
        this.model.removeAllElements();
@@ -188,6 +243,21 @@ public class Venta extends javax.swing.JFrame {
     private void productosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_productosComboActionPerformed
+
+    private void delElementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delElementActionPerformed
+        String elemento = this.listaProduct.getSelectedValue();
+        double precio = parseDouble(this.totalText.getText().substring(7));
+        precio-=parseDouble(elemento.substring(elemento.indexOf("$")+1));
+        this.totalText.setText("Total: "+precio);
+        this.model.remove(this.listaProduct.getSelectedIndex());
+        
+    }//GEN-LAST:event_delElementActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Admin a = new Admin("admin", "root");
+        JOptionPane.showMessageDialog(null, "Las ganancias del día: "+a.corteCaja()+". Un reporte detallado se puede encontrar en el archivo CorteDeCaja.txt");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,7 +297,9 @@ public class Venta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProduct;
     private javax.swing.JLabel cambioText;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton delElement;
+    private javax.swing.JCheckBox factura;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JList<String> listaProduct;

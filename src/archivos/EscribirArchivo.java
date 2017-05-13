@@ -5,7 +5,7 @@
  */
 package archivos;
 
-import finanzas.Articulo;
+import finanzas.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,11 +56,28 @@ public class EscribirArchivo {
         return true;
     }
 
-    private static void escribirArticulos(ArrayList<String> arr) {
+    public static void escribirArticulos(ArrayList<String> arr) {
         PrintWriter salida = null;
         try {
             salida = new PrintWriter(new FileWriter("articulos.txt"));
             for (String a: arr)
+            {
+                salida.println(a);
+            }
+
+        }
+        catch (IOException ex) {
+            System.out.println("Error al escribir en el archivo" + ex);
+        } finally {
+            salida.close();
+        }
+    }
+    public static void escribirCorte() {
+        ArrayList<Ventas> arr = Ventas.getVentas();
+        PrintWriter salida = null;
+        try {
+            salida = new PrintWriter(new FileWriter("CorteDeCaja.txt"));
+            for (Ventas a: arr)
             {
                 salida.println(a);
             }

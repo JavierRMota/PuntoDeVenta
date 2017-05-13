@@ -34,9 +34,9 @@ public class Bebida extends Consumible{
             this.codigoTipo = "JG";
         }else if (this.tipo.equalsIgnoreCase("Agua")){
             this.codigoTipo = "H2O";
-        }
+        }else this.codigoTipo="BG";
         generarCodigo();
-        EscribirArchivo.addProducto(this);
+
     }
 
     @Override

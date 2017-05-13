@@ -5,6 +5,11 @@
  */
 package puntodeventa;
 
+import archivos.EscribirArchivo;
+import finanzas.*;
+import static java.lang.Double.parseDouble;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Javier
@@ -27,21 +32,116 @@ public class AgregarProducto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        addProd = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        pName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        precio = new javax.swing.JTextField();
+        tipoP = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Tipo:");
+
+        addProd.setText("Registrar producto");
+        addProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProdActionPerformed(evt);
+            }
+        });
+
+        back.setText("Regresar");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setText("Precio:");
+
+        tipoP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bebida", "Comida", "Cargador", "Memoria" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(back)
+                        .addGap(68, 68, 68)
+                        .addComponent(addProd))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pName)
+                            .addComponent(precio)
+                            .addComponent(tipoP, 0, 285, Short.MAX_VALUE))))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tipoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addProd)
+                    .addComponent(back))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        JOptionPane.showMessageDialog(null, "No se han realizado cambios.");
+        AdminPanel admin = new AdminPanel();
+        admin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
+
+    private void addProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProdActionPerformed
+        switch (this.tipoP.getSelectedItem().toString())
+        {
+            case "Bebida":
+                EscribirArchivo.addProducto(new Bebida(this.pName.getText(),parseDouble(this.precio.getText())));        
+                break;
+            case "Cargador":
+                EscribirArchivo.addProducto(new Cargador(this.pName.getText(),parseDouble(this.precio.getText())));
+                break;
+            case "Comida":
+                EscribirArchivo.addProducto(new Comida(this.pName.getText(),parseDouble(this.precio.getText())));
+                break;
+            case "Memoria":
+                EscribirArchivo.addProducto(new Memoria(this.pName.getText(),parseDouble(this.precio.getText())));
+                break;
+                    
+        }
+        JOptionPane.showMessageDialog(null, "Articulo agregada con éxito.");
+        AdminPanel admin = new AdminPanel();
+        admin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +179,13 @@ public class AgregarProducto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addProd;
+    private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField pName;
+    private javax.swing.JTextField precio;
+    private javax.swing.JComboBox<String> tipoP;
     // End of variables declaration//GEN-END:variables
 }

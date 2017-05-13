@@ -1,0 +1,1 @@
+Productos: [Ljava.lang.String;@686dfef2	Empleado: Javier Rodriguez	Total de venta: 900.0

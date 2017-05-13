@@ -5,7 +5,7 @@
  */
 package personas;
 
-import archivos.AbrirArchivo;
+import archivos.*;
 import java.util.ArrayList;
 import finanzas.*;
 
@@ -38,8 +38,14 @@ public class Empleado extends Persona implements Usuario{
 
     @Override
     public double corteCaja() {
-        Venta.getVentas();
-        return 0.0;
+        ArrayList<Ventas> ventas = Ventas.getVentas();
+        double corte=0;
+        for(Ventas v: ventas)
+        {
+            corte+=v.getTotal();
+        }
+        EscribirArchivo.escribirCorte();
+        return corte;
     }
 
     @Override

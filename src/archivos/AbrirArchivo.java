@@ -8,6 +8,7 @@ package archivos;
 import finanzas.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import static java.lang.Double.parseDouble;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -106,7 +107,31 @@ public class AbrirArchivo {
             for (int x=0; x<arr.size();x++)
             {
                 articulos[x]=arr.get(x);
+                
+                /*String[] arr2 = articulos[x].split(" ");
+                StringBuilder tipo = new StringBuilder(arr2.length-2);
+                for(int a=1;a<arr2.length-1;x++)
+                {
+                    tipo.append(arr2[a]);
+                }
+                tipo.trimToSize();
+                switch (arr2[0].split("\t")[1])
+                {
+                    case "Bebida":
+                        Bebida b = new Bebida(tipo.toString(),parseDouble(arr2[arr2.length-1].substring(1)));
+                        break;
+                    case "Cargador":
+                        Cargador c1 = new Cargador(tipo.toString(),parseDouble(arr2[arr2.length-1].substring(1)));
+                        break;
+                    case "Comida":
+                        Comida c2 = new Comida(tipo.toString(),parseDouble(arr2[arr2.length-1].substring(1)));
+                        break;
+                    case "Memoria":
+                        Memoria m = new Memoria(tipo.toString(),parseDouble(arr2[arr2.length-1].substring(1)));
+                        break;
+                }*/
             }
+            
             return articulos;
                     
         }
