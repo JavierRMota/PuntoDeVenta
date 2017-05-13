@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package archivos;
 
 import finanzas.*;
@@ -16,9 +12,13 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import personas.*;
 
-/**
- *
- * @author Javier
+/*
+ * Clase AbrirArchivo
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class AbrirArchivo {
     
@@ -136,6 +136,44 @@ public class AbrirArchivo {
                     
         }
         
+    }
+
+    public static double[] getVentas() {
+        
+        Scanner entrada = null;
+        String linea;
+        double[] ventas = new double[]{0.0,0.0};
+        try {
+		entrada = new Scanner(new FileReader("CorteDeCaja.txt"));
+		entrada.useDelimiter("[\t\n\r]+");
+		while (entrada.hasNextLine() ) {
+                    linea= entrada.nextLine();
+                    double total = parseDouble(linea.substring(linea.indexOf("Total de venta: ")+15, linea.indexOf("\tTipo")));
+                    String tipo = linea.substring(linea.indexOf("Tipo: ")+6);
+                    if(tipo.equalsIgnoreCase("Tarjeta")) ventas[0]+=total;
+                    else ventas[1]+=total;
+		}				 
+        }		
+        catch (FileNotFoundException e) 
+        {
+            System.err.println(e);
+            System.out.println("Archivo NO encontrado!!");
+        } 
+        catch (InputMismatchException e)
+        {
+            System.err.println(e);
+            System.out.println("Error en el tipo de datos!!");
+        }
+        catch (NoSuchElementException e) 
+        {
+            System.err.println(e);
+            System.out.println("Error durante la lectura, faltan datos!!");
+        }
+        finally 
+        {
+            entrada.close();
+            return ventas;
+        }
     }
     
 }

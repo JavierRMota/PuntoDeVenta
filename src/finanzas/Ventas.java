@@ -1,23 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package finanzas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import personas.Empleado;
 
-/**
- *
- * @author Javier
+/*
+ * Clase Ventas
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class Ventas {
-    private String [] productos;
+    private String  productos[],tipo;
     private double total;
     private Empleado empleado;
     public static ArrayList<Ventas> ventas = new ArrayList<>();
-    public Ventas(String[] productos, double total, Empleado e)
+    public Ventas(String[] productos, double total, Empleado e,String tipo)
     {
         if(e!= null)
             this.empleado = new Empleado(e.getUsername(), e.getPassword(),e.getRazonSocial(), e.getDireccion(),e.getCorreo(), e.getEdad(), e.getRfc());
@@ -28,7 +29,9 @@ public class Ventas {
         }
         if(total>=0) this.total=total;
         else this.total=0;
+        this.tipo=tipo;
         ventas.add(this);
+        
     }
 
     public String[] getProductos() {
@@ -42,14 +45,18 @@ public class Ventas {
     public Empleado getEmpleado() {
         return this.empleado;
     }
-
+    public String getTipo()
+    {
+        return this.tipo;
+    }
     public static ArrayList<Ventas> getVentas() {
         return Ventas.ventas;
     }
+    
     @Override
     public String toString()
     {
-        return "Productos: "+this.productos+"\tEmpleado: "+this.empleado.getRazonSocial()+"\tTotal de venta: "+this.total;
+        return "Productos: "+Arrays.toString(this.productos)+"\tEmpleado: "+this.empleado.getRazonSocial()+"\tTotal de venta: "+this.total+"\tTipo: "+this.tipo;
     }
     
     

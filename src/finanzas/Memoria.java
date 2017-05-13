@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package finanzas;
 
 import archivos.EscribirArchivo;
 
-/**
- *
- * @author Lenin
+/*
+ * Clase Memoria
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class Memoria extends Electronico{
-    
+    private final int capacidadGB;
     private final String tipo;
     public final String[] tiposMemoria = {"USB", "SD","MicroSD"};
     private static final String SUFIJO = "MEM";
@@ -20,10 +20,17 @@ public class Memoria extends Electronico{
     private static final double PRECIO_MAX = 500.0;
     private String codigoEntrada;
 
-    public Memoria( String tipo, double precio) {
+    public Memoria(int capacidad, String tipo, double precio) {
         this.tipo = tipo;
-        
-        
+        this.capacidadGB = capacidad;
+        if(precio<PRECIO_MIN){
+            this.precio = PRECIO_MIN;
+        }else if (precio>PRECIO_MAX){
+            this.precio = PRECIO_MAX;
+        }
+        else{
+            this.precio = precio;
+        }
         if (this.tipo.equalsIgnoreCase("USB")){
             this.codigoEntrada = "USB";
         }else if (this.tipo.equalsIgnoreCase("SD")){
@@ -70,6 +77,6 @@ public class Memoria extends Electronico{
     
     @Override
     public String toString() {
-        return this.codigo+"\tMemoria "+ this.tipo+" $"+this.precio;
+        return this.codigo+"\tMemoria "+ this.tipo+" "+this.capacidadGB+" $"+this.precio;
     }
 }

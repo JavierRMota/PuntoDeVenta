@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package personas;
 
 import archivos.AbrirArchivo;
@@ -10,9 +6,13 @@ import archivos.EscribirArchivo;
 import finanzas.Ventas;
 import java.util.ArrayList;
 
-/**
- *
- * @author Javier
+/*
+ * Clase Admin
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class Admin implements Usuario{
     private String user, pwd;
@@ -38,15 +38,11 @@ public class Admin implements Usuario{
     }
 
     @Override
-    public double corteCaja()
+    public double[] corteCaja()
     {
-        ArrayList<Ventas> ventas = Ventas.getVentas();
-        double corte=0;
-        for(Ventas v: ventas)
-        {
-            corte+=v.getTotal();
-        }
-        EscribirArchivo.escribirCorte();
+         
+        double [] corte=AbrirArchivo.getVentas();
+        
         return corte;
         
     }

@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package puntodeventa;
 
 import javax.swing.JOptionPane;
 import personas.Admin;
 
-/**
- *
- * @author Javier
+/*
+ * Clase AdminPanel
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class AdminPanel extends javax.swing.JFrame {
 
@@ -53,7 +53,7 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
-        printInventario.setText("Imprimir inventario");
+        printInventario.setText("Obtener ventas");
         printInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printInventarioActionPerformed(evt);
@@ -104,7 +104,10 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void printInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printInventarioActionPerformed
         Admin a = new Admin("admin", "root");
-        JOptionPane.showMessageDialog(null, "Las ganancias del día: "+a.corteCaja()+". Un reporte detallado se puede encontrar en el archivo CorteDeCaja.txt");
+        double efectivo, tarjeta, corte [] = a.corteCaja();
+        efectivo=corte[1];
+        tarjeta = corte[0];
+        JOptionPane.showMessageDialog(null, "Las ganancias del día: "+(tarjeta+efectivo)+"\nEfectivo: "+efectivo+"\nTarjeta: "+tarjeta+"\n Un reporte detallado se puede encontrar en el archivo CorteDeCaja.txt");
         
     }//GEN-LAST:event_printInventarioActionPerformed
 

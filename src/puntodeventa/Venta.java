@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package puntodeventa;
 
 import archivos.AbrirArchivo;
@@ -12,9 +8,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import personas.*;
 
-/**
- *
- * @author Javier
+/*
+ * Clase Venta
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class Venta extends javax.swing.JFrame {
     DefaultListModel<String> model = new DefaultListModel<>();
@@ -208,12 +208,12 @@ public class Venta extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Se enviará factura");
         }
         double precio = parseDouble(this.totalText.getText().substring(7));
-        String[] venta = new String[model.size()];
-            for (int x=0; x<model.size();x++)
+        String[] venta = new String[model.toArray().length];
+            for (int x=0; x<model.toArray().length;x++)
             {
-                venta[x]=model.get(x).toString();
+                venta[x]=model.toArray()[x].toString();
             }
-        Ventas m = new Ventas(venta,precio,e);
+        Ventas m = new Ventas(venta,precio,e, "Efectivo");
         this.cambioText.setText("Cambio: "+(pago-parseDouble(this.totalText.getText().substring(7))));
         JOptionPane.showMessageDialog(null, this.cambioText.getText());
         this.cambioText.setText("Cambio: 0.00");
@@ -229,12 +229,12 @@ public class Venta extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null, "Esperando PinPad...");
        JOptionPane.showMessageDialog(null, "Pago realizado exitosamente.");
        double precio = parseDouble(this.totalText.getText().substring(7));
-       String[] venta = new String[model.size()];
-            for (int x=0; x<model.size();x++)
+       String[] venta = new String[model.toArray().length];
+            for (int x=0; x<model.toArray().length;x++)
             {
-                venta[x]=model.get(x).toString();
+                venta[x]=model.toArray()[x].toString();
             }
-       Ventas m = new Ventas(venta,precio,e);
+       Ventas m = new Ventas(venta,precio,e, "Tarjeta");
        this.cambioText.setText("Cambio: 0.00");
        this.totalText.setText("Cambio: 0.00");
        this.model.removeAllElements();
@@ -254,8 +254,8 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_delElementActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Admin a = new Admin("admin", "root");
-        JOptionPane.showMessageDialog(null, "Las ganancias del día: "+a.corteCaja()+". Un reporte detallado se puede encontrar en el archivo CorteDeCaja.txt");
+
+        JOptionPane.showMessageDialog(null, "En la caja debe haber: "+this.e.corteCaja()[0]+".");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -1,17 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package personas;
 
 import archivos.*;
 import java.util.ArrayList;
 import finanzas.*;
 
-/**
- *
- * @author Javier
+/*
+ * Clase Empleado
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class Empleado extends Persona implements Usuario{
     private String user, pwd;
@@ -37,12 +37,13 @@ public class Empleado extends Persona implements Usuario{
     }
 
     @Override
-    public double corteCaja() {
+    public double[] corteCaja() {
         ArrayList<Ventas> ventas = Ventas.getVentas();
-        double corte=0;
+        double [] corte= new double[] {0.0};
         for(Ventas v: ventas)
         {
-            corte+=v.getTotal();
+            if(v.getTipo().equalsIgnoreCase("Efectivo"))
+                corte[0]+=v.getTotal();
         }
         EscribirArchivo.escribirCorte();
         return corte;

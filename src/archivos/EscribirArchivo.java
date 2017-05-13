@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package archivos;
 
 import finanzas.*;
@@ -12,9 +8,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import personas.*;
 
-/**
- *
- * @author Javier
+/*
+ * Clase EscribirArchivo
+ * Autor 1: Fabián Camp Mussa A01378565.
+ * Autor 2: José Javier Rodríguez Mota A01372812.
+ * Autor 3: Lenin Silva Gutiérrez A01373214.
+ * Fecha: mayo 12, 2017.
+ * Proyecto final
  */
 public class EscribirArchivo {
     public static void escribirUsuarios(ArrayList<Usuario> arr) {
@@ -76,7 +76,7 @@ public class EscribirArchivo {
         ArrayList<Ventas> arr = Ventas.getVentas();
         PrintWriter salida = null;
         try {
-            salida = new PrintWriter(new FileWriter("CorteDeCaja.txt"));
+            salida = new PrintWriter(new FileWriter("CorteDeCaja.txt", true));
             for (Ventas a: arr)
             {
                 salida.println(a);
