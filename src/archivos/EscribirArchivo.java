@@ -5,6 +5,7 @@
  */
 package archivos;
 
+import finanzas.Articulo;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,5 +44,32 @@ public class EscribirArchivo {
         escribirUsuarios(arr);
         return true;
     }
-    
+    public static boolean addProducto(Articulo a)
+    {
+        ArrayList<String> arr = new ArrayList<>();
+        for (String prod : AbrirArchivo.getArticulos()){
+            arr.add(prod);
+        }
+        arr.add(a.toString());
+        escribirArticulos(arr);
+        
+        return true;
+    }
+
+    private static void escribirArticulos(ArrayList<String> arr) {
+        PrintWriter salida = null;
+        try {
+            salida = new PrintWriter(new FileWriter("articulos.txt"));
+            for (String a: arr)
+            {
+                salida.println(a);
+            }
+
+        }
+        catch (IOException ex) {
+            System.out.println("Error al escribir en el archivo" + ex);
+        } finally {
+            salida.close();
+        }
+    }
 }

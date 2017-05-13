@@ -5,6 +5,7 @@
  */
 package personas;
 
+import archivos.AbrirArchivo;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +23,16 @@ public class Admin implements Usuario{
     @Override
     public ArrayList<Usuario> verUsuarios() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Usuario> arr = new ArrayList<>();
+        for(Usuario u : AbrirArchivo.abrirArchivoUsuarios() )
+        {
+            if(u instanceof Persona)
+            {
+                Empleado e = (Empleado) u;
+                arr.add(new Empleado(e.getUsername(), e.getPassword(), e.getRazonSocial(), e.getDireccion(), e.getCorreo(), e.getEdad(), e.getRfc()));
+            }
+        }
+        return arr;
     }
 
     @Override

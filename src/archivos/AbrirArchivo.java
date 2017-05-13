@@ -9,6 +9,7 @@ import finanzas.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -66,35 +67,21 @@ public class AbrirArchivo {
         finally 
         {
             entrada.close();
-            return arr;
+            
         }
+        return arr;
     }
     public static String[] getArticulos()
     {
-        /*Scanner entrada = null;
-        String username,password, direccion, correo, rfc, nombre;
-        int edad;
-        ArrayList<Usuario> arr = new ArrayList<>();
+        Scanner entrada = null;
+        String linea;
+        ArrayList<String> arr = new ArrayList<>();
         try {
-		entrada = new Scanner(new FileReader("users.txt"));
+		entrada = new Scanner(new FileReader("articulos.txt"));
 		entrada.useDelimiter("[\t\n\r]+");
 		while (entrada.hasNextLine() ) {
-                    username = entrada.next();
-                    password= entrada.next();
-                    if(username.equals("admin")){
-                        arr.add(new Admin(username,password));
-                        
-                    }
-                    else
-                    {
-                        nombre = entrada.next();
-                        rfc = entrada.next();
-                        direccion= entrada.next();
-                        correo= entrada.next();
-                        edad = entrada.nextInt();
-                        
-                        arr.add(new Empleado(username,password,nombre,direccion,correo,edad, rfc));  
-                    }
+                    linea= entrada.nextLine();
+                    arr.add(linea);  
 		}				 
         }		
         catch (FileNotFoundException e) 
@@ -115,10 +102,15 @@ public class AbrirArchivo {
         finally 
         {
             entrada.close();
-            return arr;
-        }*/
-        String [] articulos = new String[] {"Art 1 $50.00","Art 2 $50.00","Art 3 $50.00"};
-        return articulos;
+            String[] articulos = new String[arr.size()];
+            for (int x=0; x<arr.size();x++)
+            {
+                articulos[x]=arr.get(x);
+            }
+            return articulos;
+                    
+        }
+        
     }
     
 }

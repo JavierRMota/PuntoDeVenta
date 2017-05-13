@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package puntodeventa;
-import archivos.InicioSesion;
+import archivos.*;
 import javax.swing.JOptionPane;
 import personas.*;
 
@@ -110,6 +110,8 @@ public class Login extends javax.swing.JFrame {
         {
             if(u instanceof Empleado)
             {
+                Venta vent = new Venta();
+                vent.setVisible(true);
                 this.dispose();
             }
             else
