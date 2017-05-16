@@ -205,7 +205,8 @@ public class Venta extends javax.swing.JFrame {
         double pago = parseDouble(JOptionPane.showInputDialog("Efectivo:"));
         if(this.factura.isSelected())
         {
-           JOptionPane.showMessageDialog(null, "Se enviará factura");
+          Clientes client = new Clientes();
+          client.setVisible(true);
         }
         double precio = parseDouble(this.totalText.getText().substring(7));
         String[] venta = new String[model.toArray().length];
@@ -224,7 +225,9 @@ public class Venta extends javax.swing.JFrame {
     private void payCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payCardActionPerformed
        if(this.factura.isSelected())
        {
-           JOptionPane.showMessageDialog(null, "Se enviará factura");
+           Clientes client = new Clientes();
+           client.setVisible(true);
+           
        }
        JOptionPane.showMessageDialog(null, "Esperando PinPad...");
        JOptionPane.showMessageDialog(null, "Pago realizado exitosamente.");

@@ -17,11 +17,19 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return this.razonSocial+"\t"+this.rfc+"\t"+this.direccion+"\t"+this.correo;
+        return this.razonSocial+"\t"+this.rfc+"\t"+this.direccion+"\t"+this.correo+"\t"+this.edad;
     }
     public void facturar()
     {
         
+    }
+    public String getNombre()
+    {
+        return this.razonSocial;
+    }
+    public String getRfc()
+    {
+        return this.rfc;
     }
 
     

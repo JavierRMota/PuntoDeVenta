@@ -89,4 +89,31 @@ public class EscribirArchivo {
             salida.close();
         }
     }
+    public static void escribirClientes(ArrayList<Cliente> arr) {
+        PrintWriter salida = null;
+        try {
+            salida = new PrintWriter(new FileWriter("cliente.txt"));
+            for (Cliente c: arr)
+            {
+                salida.println(c.toString());
+            }
+            /*salida.close();
+            salida = new PrintWriter(new FileWriter("datos.txt",true));
+            for(int i=0; i<10; i++) {
+                salida.println( (int)(Math.random()*100)+1 );
+            }*/
+        }
+        catch (IOException ex) {
+            System.out.println("Error al escribir en el archivo" + ex);
+        } finally {
+            salida.close();
+        }
+    }
+    public static boolean addCliente(Cliente c)
+    {
+        ArrayList<Cliente> arr = AbrirArchivo.abrirArchivoClientes();
+        arr.add(c);
+        escribirClientes(arr);
+        return true;
+    }
 }

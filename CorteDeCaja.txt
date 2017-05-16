@@ -3,3 +3,7 @@ Productos: [AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00, AL001	Be
 Productos: [AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00]	Empleado: Javier Rodriguez	Total de venta: 2250.0	Tipo: Efectivo
 Productos: [AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00, AL001	Bebida Vino CS $450.00]	Empleado: Javier Rodriguez	Total de venta: 1350.0	Tipo: Efectivo
 Productos: [EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00]	Empleado: Javier Rodriguez	Total de venta: 100.0	Tipo: Efectivo
+Productos: [AL002	Bebida Cervaza XX $29.00, AETMEM||SD000	Memoria SD 16 $200.0]	Empleado: Javier Rodriguez	Total de venta: 229.0	Tipo: Efectivo
+Productos: [EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00]	Empleado: Javier Rodriguez	Total de venta: 550.0	Tipo: Tarjeta
+Productos: [EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00, EN003	Bebida RedBull $50.00]	Empleado: Javier Rodriguez	Total de venta: 300.0	Tipo: Tarjeta
+Productos: [EN003	Bebida RedBull $50.00, ACB||AL000	Bebida ALCOHOLICA $50.0]	Empleado: ajuncorey	Total de venta: 100.0	Tipo: Tarjeta

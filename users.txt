@@ -1,3 +1,4 @@
 admin	root
 empleado1	emp1	Javier Rodriguez	A45A3A	ORQ	jj	19
 carbi	pene	CARB0134	SCAOIN12	Nicolás Romero	jj@mota.com	19
+ajunco	123	ajuncorey	6666hhh	jdjdjgdj	gkgk	19

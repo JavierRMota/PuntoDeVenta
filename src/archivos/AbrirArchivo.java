@@ -175,5 +175,60 @@ public class AbrirArchivo {
             return ventas;
         }
     }
+    public static ArrayList<Cliente> abrirArchivoClientes()
+    {
+        Scanner entrada = null;
+        String direccion, correo, rfc, nombre;
+        int edad;
+        ArrayList<Cliente> arr = new ArrayList<>();
+        try {
+		entrada = new Scanner(new FileReader("cliente.txt"));
+		entrada.useDelimiter("[\t\n\r]+");
+		while (entrada.hasNextLine() ) {
+                    nombre = entrada.next();
+                    rfc = entrada.next();
+                    direccion= entrada.next();
+                    correo= entrada.next();
+                    edad = entrada.nextInt();
+                    arr.add(new Cliente(nombre,direccion,correo,edad, rfc));  
+		}				 
+        }		
+        catch (FileNotFoundException e) 
+        {
+            System.err.println(e);
+            System.out.println("No hay clientes");
+            arr.add(null);
+        } 
+        catch (InputMismatchException e)
+        {
+            System.err.println(e);
+            System.out.println("Error en el tipo de datos!!");
+        }
+        catch (NoSuchElementException e) 
+        {
+            System.err.println(e);
+            System.out.println("Error durante la lectura, faltan datos!!");
+        }
+        finally 
+        {
+            entrada.close();
+            
+        }
+        return arr;
+    }
+    public static String[] getClientes()
+    {
+        ArrayList<Cliente> arr= abrirArchivoClientes();
+        String[] clientes = new String[arr.size()];
+        for (int x=0; x<arr.size();x++)
+        {
+            Cliente c = arr.get(x);
+            clientes[x]= c.getRfc()+" "+ c.getNombre();
+
+        }
+            
+            return clientes;
+                    
+    }
     
 }
